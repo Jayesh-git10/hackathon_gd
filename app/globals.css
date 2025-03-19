@@ -1,0 +1,255 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #FF4D00;
+  --primary-dark: #E64500;
+  --primary-light: #FF7A40;
+  --secondary: #1E1E1E;
+  --accent: #FF4D00;
+  --background: #121212;
+  --card-bg: #1E1E1E;
+  --text-primary: #FFFFFF;
+  --text-secondary: #AAAAAA;
+  --text-muted: #777777;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-6 rounded-md transition-all duration-300 shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 transform;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded-md transition-all duration-300 shadow-lg hover:shadow-gray-500/20 hover:-translate-y-0.5 transform;
+  }
+  
+  .card {
+    @apply bg-card-bg bg-opacity-95 rounded-xl shadow-xl p-8 backdrop-blur-sm border border-gray-800 transition-all duration-300;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-gray-200 mb-2;
+  }
+  
+  .form-input {
+    @apply w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200;
+  }
+
+  /* Section styling */
+  .section-title {
+    @apply text-3xl font-bold text-white mb-6 relative;
+  }
+  
+  .section-title::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-16 h-1 bg-primary rounded-full mt-2;
+  }
+}
+
+/* Custom styling for form elements */
+input, select, textarea {
+  color-scheme: dark;
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-muted);
+}
+
+/* Style for form inputs with orange text */
+.text-primary::placeholder {
+  color: rgba(255, 77, 0, 0.5);
+}
+
+.form-input:focus {
+  box-shadow: 0 0 12px rgba(255, 77, 0, 0.4);
+}
+
+/* Checkbox styling */
+input[type="checkbox"] {
+  @apply text-primary rounded border-gray-600 focus:ring-primary focus:ring-offset-gray-800;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px rgba(255, 77, 0, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(255, 77, 0, 0.8); }
+  100% { box-shadow: 0 0 5px rgba(255, 77, 0, 0.5); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -100% 0; }
+  100% { background-position: 100% 0; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-fadeInLeft {
+  animation: fadeInLeft 0.6s ease-out forwards;
+}
+
+.animate-fadeInRight {
+  animation: fadeInRight 0.6s ease-out forwards;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 77, 0, 0.1), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Card hover effects */
+.hover-card {
+  @apply transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Loading animation */
+.loading-spinner {
+  @apply inline-block h-6 w-6 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite];
+  border-color: var(--primary) transparent var(--primary) transparent;
+}
+
+/* Full page loading overlay */
+.page-loading-overlay {
+  @apply fixed inset-0 flex flex-col items-center justify-center bg-black/90 z-50;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.page-loading-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.page-loading-spinner-container {
+  position: relative;
+  width: 70px;
+  height: 70px;
+}
+
+.page-loading-spinner {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 5px solid transparent;
+  border-top-color: var(--primary);
+  border-bottom-color: var(--primary);
+  animation: page-loader-spin 1.2s linear infinite;
+}
+
+.page-loading-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.page-loading-icon-shine {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--primary);
+  filter: blur(5px);
+  opacity: 0.8;
+  animation: shine 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes shine {
+  0% { opacity: 0.3; transform: scale(0.8); }
+  100% { opacity: 0.9; transform: scale(1.2); }
+}
+
+.page-loading-logo {
+  @apply mt-6 text-3xl font-bold text-white;
+}
+
+.page-loading-logo span {
+  @apply text-primary animate-glow inline-block;
+}
+
+.page-loading-text {
+  @apply mt-4 text-gray-300 animate-pulse;
+}
+
+@keyframes page-loader-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+} 
